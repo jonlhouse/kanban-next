@@ -16,18 +16,25 @@ See [GLOSSARY.md](./GLOSSARY.md) for the project's domain terminology.
 - Each column has an explicit edit action for renaming its title in place.
   Enter or clicking away saves a valid name; Escape cancels the edit and
   retains the previous name.
+- A column name is trimmed of surrounding whitespace when saved.
 - A name containing only whitespace is invalid. Show visible feedback and keep
-  editing active until the name is corrected or the edit is canceled. Duplicate
+  editing active until the name is corrected or the edit is canceled: Enter and
+  clicking away only show the feedback, and Escape still cancels. Duplicate
   column names are allowed.
 - Column names have no special effect on tasks or workflow. Renaming a column
   does not alter its tasks.
+- The columns fill the width of the board in equal widths, and the **Add Task**
+  action lines up with the right edge of the last column. Each column has a
+  minimum width; when the window is too narrow for all five in one row, columns
+  wrap onto new rows in their fixed order.
 
 ## Tasks and cards
 
 - A top-level **Add Task** action opens a dialog with a single-line title field
   and a multiline description field.
 - A task title is required, cannot be whitespace-only, and is trimmed of
-  surrounding whitespace. The description is optional. No arbitrary field
+  surrounding whitespace. The description is optional and is also trimmed; a
+  whitespace-only description counts as no description. No arbitrary field
   length limit is specified for this proof of concept.
 - Saving a new task appends its card to the first column, regardless of that
   column's current name.
@@ -37,6 +44,8 @@ See [GLOSSARY.md](./GLOSSARY.md) for the project's domain terminology.
 - A task can be deleted after confirmation in a dialog. Confirmed deletion is
   immediate and cannot be undone. Canceling leaves the task unchanged.
 - Invalid task titles produce visible feedback and leave the dialog open.
+- In the add, edit and delete dialogs, Escape and clicking outside the dialog
+  cancel it, the same as its Cancel button; unsaved input is discarded.
 
 ## Drag and drop
 
