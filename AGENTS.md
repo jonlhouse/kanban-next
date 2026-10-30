@@ -1,3 +1,13 @@
+# Kanban Next
+
+A learning project: a single-page Kanban board built by agents, to explore agent-generated code.
+
+- What to build: `MVP-SPEC.md`. Change it only with the user's agreement.
+- Vocabulary: `GLOSSARY.md`. Use its terms (Board, Column, Task, Card) in code, UI text and commits, and none of the words listed under `_Avoid_`.
+- Decisions that are hard to reverse, surprising and a real trade-off (for example the drag-and-drop approach) get a short ADR in `docs/adr/`.
+- Propose any new npm dependency, with the alternatives, and wait for approval before installing it.
+- Before calling work done, `npm run lint` and `npm run build` pass, and the behaviour has been checked against the relevant `MVP-SPEC.md` bullets.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 ## This is NOT the Next.js you know
