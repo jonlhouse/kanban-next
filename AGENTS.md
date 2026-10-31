@@ -8,6 +8,20 @@ A learning project: a single-page Kanban board built by agents, to explore agent
 - Propose any new npm dependency, with the alternatives, and wait for approval before installing it.
 - Before calling work done, `npm run lint` and `npm run build` pass, and the behaviour has been checked against the relevant `MVP-SPEC.md` bullets.
 
+## Agent skills
+
+### Issue tracker
+
+GitHub Issues in `jonlhouse/kanban-next`, via the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default vocabulary: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: `GLOSSARY.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.
+
 <!-- BEGIN:nextjs-agent-rules -->
 
 ## This is NOT the Next.js you know
