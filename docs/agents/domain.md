@@ -8,6 +8,7 @@ How the engineering skills should consume this repo's domain documentation when 
 - **`GLOSSARY-MAP.md`** at the repo root if it exists: it points at one `GLOSSARY.md` per context. Read each one relevant to the topic.
 - **`docs/adr/`**: read ADRs that touch the area you're about to work in. In multi-context repos, also check `src/<context>/docs/adr/` for context-scoped decisions.
 - **Research folder: `docs/research/`**: promoted research, one `<YYYY-MM-DD>-<keywords>.md` file per topic, written by `/promote-research`. Read files whose keywords match your area, and treat a finding as current only if its `Verified` date and version still hold.
+- **BRD folder: `docs/brds/`**: business requirements documents, one `<YYYY-MM-DD>-<slug>.md` file each, written by `/to-brd`. Read BRDs that touch your area, and cite their requirement IDs (`REQ-NNN-name`) when your work implements them.
 
 If any of these files don't exist, **proceed silently**. Don't flag their absence; don't suggest creating them upfront. The `/domain-modeling` skill (reached via `/grill-with-docs` and `/improve-codebase-architecture`) creates them lazily when terms or decisions actually get resolved.
 

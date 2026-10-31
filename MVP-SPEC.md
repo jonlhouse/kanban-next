@@ -3,8 +3,13 @@
 ## Purpose and scope
 
 Build a desktop-only, single-page proof of concept for one person to capture
-tasks and move them through a board. This is a learning exercise intended to
-explore agent-generated code, not a production-ready product.
+tasks and move them through a board. This is a learning project, not a
+production-ready product. It began as a test of generating a codebase from this
+spec, and is now a testbed for agent skills that cover business requirements,
+spec writing, ticket creation and test-driven development.
+
+This spec is frozen as the as-built baseline. Later features are described by
+business requirements documents in [docs/brds/](./docs/brds/).
 
 See [GLOSSARY.md](./GLOSSARY.md) for the project's domain terminology.
 
@@ -86,3 +91,4 @@ use browser storage or a backend for persistence.
 Authentication, collaboration or sharing, backend logic or APIs, persistence,
 additional boards, configurable column count or order, undo, and additional
 task properties such as dates, labels, and assignees are not part of this MVP.
+Features added after the MVP are described in [docs/brds/](./docs/brds/).

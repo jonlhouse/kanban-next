@@ -1,6 +1,6 @@
 # Kanban Next
 
-A learning project: a single-page Kanban board built by agents, to explore agent-generated code.
+A learning project: a single-page Kanban board built by agents, used as a testbed for agent skills across the delivery pipeline: business requirements, spec writing, ticket creation and test-driven development.
 
 - What to build: `MVP-SPEC.md`. Change it only with the user's agreement.
 - Vocabulary: `GLOSSARY.md`. Use its terms (Board, Column, Task, Card) in code, UI text and commits, and none of the words listed under `_Avoid_`.
