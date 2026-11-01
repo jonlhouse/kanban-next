@@ -23,4 +23,4 @@ Tests cover the acceptance criteria of new specs only. The MVP is not backfilled
 - Ad hoc edits and tickets with only manual seams run no tests.
 - The Firefox drag workaround in `task-card.tsx` is not exercised.
 - `/tdd` says to add the test command to the done gates in `AGENTS.md`; skip that step in this repo.
-- Automated native drag is unproven until the harness's browser proof test passes. If it can't be driven reliably, revisit this decision.
+- Automated native drag is unproven until the first browser test that needs it. If it can't be driven, revisit this decision.
