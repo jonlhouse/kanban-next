@@ -9,6 +9,7 @@ How the engineering skills should consume this repo's domain documentation when 
 - **`docs/adr/`**: read ADRs that touch the area you're about to work in. In multi-context repos, also check `src/<context>/docs/adr/` for context-scoped decisions.
 - **Research folder: `docs/research/`**: promoted research, one `<YYYY-MM-DD>-<keywords>.md` file per topic, written by `/promote-research`. Read files whose keywords match your area, and treat a finding as current only if its `Verified` date and version still hold.
 - **BRD folder: `docs/brds/`**: business requirements documents written by `/to-brd`, one top-level requirement per file (`REQ-NNN-<slug>.md`). Read BRDs that touch your area, and cite their requirement IDs (`REQ-NNN.NNN-<name>`) when your work implements them.
+- **Spec folder: `docs/specs/`**: specs written by `/to-spec`, one per BRD with the same number and slug (`SPEC-NNN-<slug>.md`), describing the product's current behaviour. Read the spec for your area before changing behaviour, cite its story IDs (`SPEC-NNN.NNN-<name>`) when your work delivers them, and update it in the same change when behaviour changes.
 
 If any of these files don't exist, **proceed silently**. Don't flag their absence; don't suggest creating them upfront. The `/domain-modeling` skill (reached via `/grill-with-docs` and `/improve-codebase-architecture`) creates them lazily when terms or decisions actually get resolved.
 
