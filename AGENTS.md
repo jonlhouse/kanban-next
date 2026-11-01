@@ -16,7 +16,7 @@ GitHub Issues in `jonlhouse/kanban-next`, via the `gh` CLI. See `docs/agents/iss
 
 ### Triage labels
 
-Default vocabulary: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. See `docs/agents/triage-labels.md`.
+Default vocabulary: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`, and the work states `in-progress` and `awaiting-pr`. See `docs/agents/triage-labels.md`.
 
 ### Domain docs
 
