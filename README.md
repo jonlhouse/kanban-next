@@ -37,6 +37,7 @@ Board state lives in a `useReducer` in `src/components/board.tsx`. Every change 
 ## Decisions
 
 - [ADR 0001](./docs/adr/0001-native-html5-drag-and-drop.md): Cards move with native HTML5 drag and drop, not a library.
+- [ADR 0002](./docs/adr/0002-unit-and-browser-test-levels.md): Automated tests are unit tests on pure logic and tests in a real browser, and run locally.
 
 ## Troubleshooting
 
