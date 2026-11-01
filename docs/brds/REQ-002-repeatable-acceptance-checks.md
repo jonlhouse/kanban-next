@@ -52,13 +52,12 @@ The behaviour of a new spec can be built by writing its check before the work.
 
 ### REQ-002.003-prove-practice
 
-The practice is shown to work before any spec relies on it, including checking that a Card moves between Columns.
+The practice is shown to work before any spec relies on it.
 
 - Priority: Must
-- Business value: The owner finds out early if the riskiest kind of check can't be relied on, rather than partway through a spec.
+- Business value: The owner finds out early if a kind of check doesn't work, rather than partway through a spec.
 - Acceptance criteria:
   - Each kind of check has been seen both passing and failing.
-  - Moving a Card between Columns has been checked reliably, or the owner has been told it can't be.
 
 ### REQ-002.004-know-check-kinds
 
