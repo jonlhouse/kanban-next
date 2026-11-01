@@ -10,13 +10,25 @@ Changes last only for the page session: a refresh starts again from the empty bo
 
 ## Running it
 
-Requires Node.js and the dependencies from `npm install`.
+Requires Node.js and the dependencies from `npm install`. The browser tests also need Chromium, downloaded once per machine:
+
+```bash
+npm install
+npx playwright install chromium
+```
+
+If a browser test then reports missing system packages, run `sudo npx playwright install-deps chromium`.
+
+So that Claude Code agents can run the test commands without permission prompts, run `claude` in the repo once and accept the trust dialog. Until then it ignores the rules in `.claude/settings.json`.
 
 ```bash
 npm run dev     # development server at http://localhost:3000
 npm run lint    # ESLint
 npm run build   # production build
 npm start       # serve the production build
+npm test        # all tests; add -- "name" to run one by name
+npm run test:unit   # unit tests only
+npm run test:e2e    # browser tests only, against a new production build on port 3100
 ```
 
 Built with Next.js 16 (App Router, Turbopack), React 19 and Tailwind CSS v4. Tailwind is wired through the `@tailwindcss/turbopack` loader in `next.config.ts`, not PostCSS.
@@ -27,6 +39,9 @@ Built with Next.js 16 (App Router, Turbopack), React 19 and Tailwind CSS v4. Tai
 src/app/            route files only: layout, page (renders <Board />), globals.css (theme colours)
 src/components/     Board (client entry point and state), Column, ColumnName, TaskCard, dialogs
 src/lib/board.ts    types, the initial Board and the reducer holding every board rule
+src/**/*.test.ts    unit tests
+e2e/                browser tests
+scripts/            the runner behind the test commands
 docs/adr/           architecture decision records
 docs/UAT-results.md user acceptance test results for the MVP
 docs/uat-add-task-wild-scott.md   the approved plan for the column-rename slice
