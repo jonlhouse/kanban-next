@@ -5,87 +5,81 @@ Date: 2026-10-31
 
 ## Purpose
 
-A freelance developer managing work for several clients needs to recognize which Tasks deserve attention first. When every Task appears equally important, urgent work can be overlooked; adding Priority should help without making Task capture burdensome.
+A freelance developer managing work for several clients needs to recognize which Tasks deserve attention first. When all Tasks appear equally important, urgent work can be overlooked and started too late.
 
 ## Stakeholders
 
-- **Freelance developer:** needs to judge and recognize what to work on next across clients while keeping Task capture quick.
+- **Board user**: needs to judge and recognize Task Priority quickly without slowing down Task capture.
 
 ## Business outcomes
 
-- Fewer urgent Tasks noticed too late, assessed through the developer's informal recollection of missed or late-noticed work before and after the change.
-- Task capture remains quick, assessed by informally comparing the time and effort needed to add Tasks before and after the change. These are directional indicators, not formal KPI targets.
+- Fewer urgent Tasks are started too late. Assess this by periodically comparing the number started too late before and after the change, without requiring the Board to collect the measurements.
+- Capturing a Task does not require a separate Priority decision.
 
 ## Scope
 
 In scope:
-- Assigning, changing, and recognizing a Task's Priority using one Board-wide scale.
-- Keeping Task capture low-friction and preserving the developer's control of Card order.
+- Choosing, changing, and recognizing Task Priority across the Board.
+- A default Priority for Tasks without an explicit choice, including existing Tasks without Priority.
 
 Out of scope:
-- Saving the Board across sessions; the existing session-only behavior remains unchanged.
-- Priority-based filtering, automatic sorting, and a separate ranked view; the existing manually ordered Board remains the focus.
-- Separate ratings for importance and urgency; Priority combines both into a judgment of what to work on next.
+- Enforcing a work order, reminders, and automatic escalation: Priority is an indicator, not an instruction.
+- Collaboration and persistence across sessions: these remain outside the current Board's scope.
 
 ## Requirements
 
-### REQ-001.001-manage-priority
+### REQ-001.001-choose-priority
 
-The developer can assign and change a Task's Priority as their judgment of what to work on next changes.
+A Board user can choose a Task's Priority and revise it as circumstances change.
 
 - Priority: Must
-- Business value: The developer can keep work for different clients comparable as circumstances change.
+- Business value: The Board user can express and update their judgment as client work becomes more or less pressing.
 - Acceptance criteria:
-  - Given a Task, when the developer assigns or changes its Priority, then the Task reflects the chosen level.
+  - The user can assign any of the four agreed Priority levels to a Task and later change it to another.
+  - Changing Priority does not require approval.
 
 ### REQ-001.002-recognize-priority
 
-The developer can distinguish the Priority of every Task on the Board, including without relying on color alone.
+A Board user can recognize and compare Task Priorities across the Board at a glance.
 
 - Priority: Must
-- Business value: The developer can identify more urgent work at a glance and distinguish levels when color is unavailable or difficult to perceive.
+- Business value: The user can distinguish urgent work from less pressing work before deciding what to tackle next.
 - Acceptance criteria:
-  - Given Tasks with different Priorities, when the developer reviews their Cards, then the Priority of each can be distinguished without relying solely on color.
+  - The user can distinguish Critical, High, Medium, and Low Tasks across the Board.
+  - Tasks may have the same Priority; the user decides which to tackle among them.
 
-### REQ-001.003-quick-task-capture
+### REQ-001.003-default-priority
 
-The developer can add a Task without having to make a separate Priority choice.
+A Board user can capture a Task without making a separate Priority decision.
 
 - Priority: Must
-- Business value: The developer can capture work quickly without interrupting their flow.
+- Business value: The user can keep adding Tasks quickly without an extra decision for each one.
 - Acceptance criteria:
-  - Given a new Task, when the developer adds it without choosing a Priority, then it receives the default Priority.
-
-### REQ-001.004-preserve-manual-order
-
-Assigning or changing Priority leaves the developer in control of Card order.
-
-- Priority: Must
-- Business value: The developer retains an established way of organizing work and avoids unexpected rearrangement.
-- Acceptance criteria:
-  - Given Cards in a manually chosen order, when the developer assigns or changes a Priority, then their order remains unchanged.
+  - A Task created without an explicit Priority has Medium Priority.
+  - Existing Tasks without a Priority have Medium Priority.
 
 ## Business rules
 
 | Name | Description |
 | --- | --- |
-| BR-001.001-shared-scale | Priority combines importance and urgency in one scale shared across the Board, regardless of client. |
-| BR-001.002-levels | The levels, from highest to lowest, are Critical (immediate attention), High (soon), Medium (ordinary work), and Low (can wait). |
-| BR-001.003-default | A new Task defaults to Medium; default and explicitly selected Medium have the same meaning. |
-| BR-001.004-retention | Moving a Task between Columns or changing its other details does not change its Priority. |
+| BR-001.001-one-priority | Each Task has exactly one Priority, shared as an attribute of the Task rather than varying by user. |
+| BR-001.002-levels | Priority levels, from highest to lowest, are Critical, High, Medium, and Low. |
+| BR-001.003-guidance | Critical suggests work needing immediate attention; Low suggests work that can generally wait. The levels guide judgment rather than prescribe it. |
+| BR-001.004-default | Medium is the default when no Priority has been chosen. |
+| BR-001.005-movement | Moving a Task between Columns does not change its Priority; a user may change it deliberately. |
+| BR-001.006-advisory | Priority is an indicator and does not dictate which Task a user must undertake. |
 
 ## Constraints
 
-- The Board remains a single-user, desktop-oriented proof of concept.
-- Tasks and their Priorities last only for the current page session; refreshing or closing the page discards them.
+- The current Board remains a single-person, session-only proof of concept; Priority does not require collaboration or persistence.
 
 ## Deferred to the spec
 
-- The agreed presentation: an icon on each Card with a distinct shape and visual treatment for each level, descriptive accessible naming, and hover text.
-- The agreed symbols: double exclamation for Critical, single exclamation for High, horizontal bar for Medium, and down arrow for Low.
-- The agreed interaction: a Priority dropdown in the Add/Edit Task dialog, ordered Critical through Low; changes are made in the dialog, not directly on the Card.
-- Detailed behavior, accessibility checks, and tests for the agreed capabilities.
+- Where and how Priority is displayed, chosen, and changed, including during Task creation.
+- Whether and how Tasks can be sorted or filtered by Priority.
+- Visual and accessible presentation of the levels.
+- How existing Tasks without Priority receive the default.
 
 ## Open questions
 
-- None.
+- None
