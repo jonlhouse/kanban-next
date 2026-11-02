@@ -71,15 +71,15 @@ As someone writing or building a spec, I want the test levels and the rule for c
 - Serves: REQ-002.004-know-check-kinds, BR-002.001-repeatable-default
 - Acceptance:
   - Given `AGENTS.md`, when I read it, then it names the unit and browser levels, the command for each, and what each catches and misses.
-  - Given `AGENTS.md`, when I read it, then it says specs mark each criterion automated or by-hand, that the builder chooses the level for each automated criterion, using the fastest that observes the behaviour, and names the choice in their report.
-  - Given `AGENTS.md`, when I read it, then it says moving a criterion to by-hand needs the owner's agreement.
+  - Given `AGENTS.md`, when I read it, then it says specs name the seam where each criterion is observed, and that the builder decides how it is checked there, using an automated test at the fastest level that observes it.
+  - Given `AGENTS.md`, when I read it, then it says a criterion no test level can observe is checked by hand, and that the builder reports how each criterion was checked.
   - Given `AGENTS.md`, when I read it, then it gives the location and naming conventions for tests at each level.
 
 ## Test seams
 
-- Running the commands and setup in a terminal: SPEC-002.001, SPEC-002.002, SPEC-002.003, SPEC-002.004; manual, run by the builder, with the owner's agreement because the harness can't sensibly test itself.
-- Proof tests: SPEC-002.005; automated (one unit test, one browser test).
-- Reading `AGENTS.md` and the README: SPEC-002.006; manual, run by the builder, with the owner's agreement.
+- The commands and setup in a terminal: SPEC-002.001, SPEC-002.002, SPEC-002.003, SPEC-002.004
+- The test suite: SPEC-002.005
+- `AGENTS.md` and the README: SPEC-002.006
 
 ## Deferred to design
 

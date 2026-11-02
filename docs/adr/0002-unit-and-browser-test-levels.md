@@ -6,7 +6,7 @@ status: accepted
 
 The Board's automated tests have two levels and no component level: Vitest unit tests on pure logic that needs no DOM, such as `boardReducer`, and Playwright tests in Chromium against the production build. The Board's riskiest behaviour depends on a real browser: drop position is computed from card layout, cards move with native drag and drop (ADR 0001), and dialogs use the native `<dialog>`. Simulated-DOM component tests would need fakes for these and miss the failures that matter, so React Testing Library and jsdom are deliberately left out, although the Next.js Vitest guide installs them.
 
-Tests cover the acceptance criteria of new specs only. The MVP is not backfilled: `MVP-SPEC.md` is frozen and was accepted by manual UAT. Tests run locally, through `/tdd`. `AGENTS.md` names the seams and their commands but adds no done gate, and there is no CI or required check for now.
+Tests cover the acceptance criteria of new specs only. The MVP is not backfilled: `MVP-SPEC.md` is frozen and was accepted by manual UAT. Tests run locally, through `/tdd` and `/implement`. `AGENTS.md` names the test levels and their commands but adds no done gate, and there is no CI or required check for now.
 
 ## Considered Options
 
@@ -20,7 +20,6 @@ Tests cover the acceptance criteria of new specs only. The MVP is not backfilled
 ## Consequences
 
 - MVP behaviour can regress without a test catching it, including checks that exist only in `docs/UAT-results.md`.
-- Ad hoc edits and tickets with only manual seams run no tests.
+- Ad hoc edits run no tests.
 - The Firefox drag workaround in `task-card.tsx` is not exercised.
-- `/tdd` says to add the test command to the done gates in `AGENTS.md`; skip that step in this repo.
 - Automated native drag is unproven until the first browser test that needs it. If it can't be driven, revisit this decision.
