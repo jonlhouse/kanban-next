@@ -19,6 +19,10 @@ _Avoid_: Item, ticket, issue, story
 **Priority**:
 A task's relative precedence for deciding what to work on next, considering both importance and urgency across the board.
 
+**Priority level**:
+One of the values a priority can take: Critical, High, Medium or Low.
+_Avoid_: Option, severity
+
 **Card**:
 The visual representation of a task on the board.
 _Avoid_: Tile, note
