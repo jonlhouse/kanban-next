@@ -1,6 +1,6 @@
 import { useId, useState } from "react";
 import { isBlank, type TaskFields } from "@/lib/board";
-import { priorities } from "@/lib/priority";
+import { priorities, priorityPresentation } from "@/lib/priority";
 import { buttonStyles, Dialog } from "./dialog";
 
 type TaskDialogProps = {
@@ -89,10 +89,10 @@ export function TaskDialog({
               if (!selected) throw new Error("Invalid Priority selection");
               setPriority(selected.name);
             }}
-            className="rounded-md border border-border px-3 py-2 outline-primary"
+            className={`rounded-md border border-border px-3 py-2 outline-primary ${priorityPresentation(priority).color}`}
           >
             {priorities.map((level) => (
-              <option key={level.name} value={level.name}>
+              <option key={level.name} value={level.name} className={level.color}>
                 {level.icon} {level.name}
               </option>
             ))}
