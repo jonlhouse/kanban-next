@@ -47,7 +47,10 @@ As a Board user, I want to recognize each Task's Priority on its Card, so that I
 
 ## Test seams
 
-- **Board in a browser:** manually check all three stories, using the Medium default and one non-default level rather than exercising each level separately. Check editing and canceling, title validation, moving and manually ordering Cards, pointer and keyboard discovery, and the accessible Priority name.
+- **The Add and Edit Task dialogs:** SPEC-001.001, SPEC-001.002
+- **Cards on the Board:** SPEC-001.003
+
+Use the Medium default and one non-default level rather than exercising each level separately.
 
 ## Deferred to design
 

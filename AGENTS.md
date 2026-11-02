@@ -20,10 +20,9 @@ A learning project: a single-page Kanban board built by agents, used as a testbe
 - Put unit tests beside the code they cover, as `src/**/<name>.test.ts`, and browser tests in `e2e/`, as `<area>.spec.ts`. The runners find tests only there, and report "no tests found" as a pass.
 - Start each test's name with the story ID it proves, then the behaviour in `GLOSSARY.md` terms: `SPEC-002.005-prove-levels: a new Task goes to the first Column`.
 
-- Specs mark each criterion automated or by-hand. The builder chooses the level for each automated criterion, using the fastest that observes the behaviour, and names the choice in their report.
-- Moving a criterion to by-hand needs the owner's agreement.
+- Specs name the seam where each criterion is observed. The builder decides how it is checked there: an automated test at the fastest level that observes it, or by hand if no level can. The report says how each criterion was checked.
 - A failing test stops the work (`BR-002.002-failing-check-stops`), and a flaky test counts as failing.
-- Tests run through `/tdd` and stay out of the done gates (ADR 0002).
+- Tests run through `/tdd` and `/implement`, and stay out of the done gates (ADR 0002).
 
 ## Agent skills
 

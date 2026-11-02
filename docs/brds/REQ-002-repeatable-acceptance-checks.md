@@ -72,7 +72,7 @@ Whoever writes or builds a spec can find out which kinds of check are available 
 
 | Name | Description |
 | --- | --- |
-| BR-002.001-repeatable-default | Every acceptance criterion in a new spec is a repeatable check unless it needs human judgement. Any by-hand check is named as such in the spec. |
+| BR-002.001-repeatable-default | Every acceptance criterion in a new spec is a repeatable check where one can observe it; anything else is reported as by-hand. |
 | BR-002.002-failing-check-stops | A failing check stops that work until the behaviour is fixed, or the owner agrees the expected behaviour has changed and the spec is updated first. |
 
 ## Constraints
