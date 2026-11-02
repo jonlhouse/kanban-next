@@ -89,14 +89,7 @@ A Board user meets the same icon and color for a Priority level wherever it is s
 
 ## Deferred to the spec
 
-- Where and how Priority is displayed, chosen, and changed, including during Task creation.
-- Whether and how Tasks can be sorted or filtered by Priority.
-- Visual and accessible presentation of the levels, within BR-001.007-one-look.
-- How existing Tasks without Priority receive the default.
-- Which product elements BR-001.007-one-look exempts, including hover tooltips and accessibility labels.
-- Whether the selected Priority level in the drop-down also shows its icon and color.
-- Whether the native drop-down can show the colors. If it can't, replacing it is worth doing, within the constraint above.
-- How the icons and colors are checked for consistency.
+- None
 
 ## Open questions
 
