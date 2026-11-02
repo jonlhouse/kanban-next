@@ -21,7 +21,7 @@ As a builder, I want to run the automated tests with one command and no one pres
   - Given a test's name, when I run any of the three commands with that name, then only the matching test runs.
   - Given any of the three commands, when I run it, then it shows no prompt or visible browser window, starts and stops what it needs, exits by itself, and ends in a clear pass or fail.
   - Given a fresh clone whose workspace has been trusted once, when an agent runs any of the three commands, then the agent gets no permission prompt.
-  - Given no tests exist, when I run any of the three commands, then it passes and says no tests were found.
+  - Given a level with no tests, or a name that matches no test, when I run any of the three commands, then it fails and says no tests were found.
 
 ### SPEC-002.002-diagnose-failures
 

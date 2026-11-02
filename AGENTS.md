@@ -17,7 +17,7 @@ A learning project: a single-page Kanban board built by agents, used as a testbe
 
 `npm test` runs both levels. Add `-- "name"` to any of the three to run matching tests.
 
-- Put unit tests beside the code they cover, as `src/**/<name>.test.ts`, and browser tests in `e2e/`, as `<area>.spec.ts`. The runners find tests only there, and report "no tests found" as a pass.
+- Put unit tests beside the code they cover, as `src/**/<name>.test.ts`, and browser tests in `e2e/`, as `<area>.spec.ts`. The runners find tests only there, and a command that finds none, or a name that matches none, fails.
 - Start each test's name with the story ID it proves, then the behaviour in `GLOSSARY.md` terms: `SPEC-002.005-prove-levels: a new Task goes to the first Column`.
 
 - Specs name the seam where each criterion is observed. The builder decides how it is checked there: an automated test at the fastest level that observes it, or by hand if no level can. The report says how each criterion was checked.
