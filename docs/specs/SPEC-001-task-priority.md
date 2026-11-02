@@ -55,6 +55,7 @@ As a Board user, I want each Priority level to have the same icon and color when
   - Given a selected Priority level in the closed drop-down, when I view it, then it shows the same icon and color as on a Card.
   - Given a Card's Priority tooltip or an accessibility label, when I use it, then its name appears without an icon or color of its own.
   - Given the Add Task dialog, when I choose a Priority level with the mouse or keyboard, then it takes no more steps than before this change, and assistive technology can still read the selected Priority level.
+- Accepted limitation: in the open list, Chromium paints the highlighted row white on blue, so that row loses its color while highlighted. Keeping the native drop-down was preferred to replacing it for this.
 
 ## Test seams
 
@@ -65,10 +66,7 @@ Use the Medium default and one non-default level rather than exercising each lev
 
 ## Deferred to design
 
-- Architecture: How Priority and its presentation are represented, and whether or how to automate checks with a test harness.
-- Architecture: Whether the native drop-down can show the colors, or has to be replaced. Replacing it is agreed if needed; any new dependency needs approval first.
-- UI: The actual icons, colors and styling, and how the drop-down and discoverable Priority name are implemented accessibly.
-- UI: Whether color applies to only the icon or to the whole drop-down entry, given that both match a Card's icon and color.
+- None
 
 ## Out of scope
 
