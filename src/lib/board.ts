@@ -1,7 +1,10 @@
+import type { Priority } from "./priority";
+
 export type Task = {
   id: string;
   title: string;
   description: string;
+  priority: Priority;
 };
 
 export type Column = {
@@ -14,7 +17,7 @@ export type Board = {
   columns: Column[];
 };
 
-export type TaskFields = Pick<Task, "title" | "description">;
+export type TaskFields = Pick<Task, "title" | "description" | "priority">;
 
 // Fixed IDs keep the server prerender and the browser's first render identical.
 export const initialBoard: Board = {
@@ -41,8 +44,8 @@ export function isBlank(text: string) {
 
 // Titles and descriptions are stored trimmed; a whitespace-only description
 // becomes empty, so the Card shows no description.
-function cleanTaskFields({ title, description }: TaskFields): TaskFields {
-  return { title: title.trim(), description: description.trim() };
+function cleanTaskFields({ title, description, priority }: TaskFields): TaskFields {
+  return { title: title.trim(), description: description.trim(), priority };
 }
 
 export function boardReducer(board: Board, action: BoardAction): Board {

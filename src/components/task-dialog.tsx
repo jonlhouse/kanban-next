@@ -1,11 +1,13 @@
 import { useId, useState } from "react";
 import { isBlank, type TaskFields } from "@/lib/board";
+import { priorities } from "@/lib/priority";
 import { buttonStyles, Dialog } from "./dialog";
 
 type TaskDialogProps = {
   heading: string;
   submitLabel: string;
   initialFields: TaskFields;
+  showPriority?: boolean;
   onSave: (fields: TaskFields) => void;
   onCancel: () => void;
 };
@@ -15,15 +17,18 @@ export function TaskDialog({
   heading,
   submitLabel,
   initialFields,
+  showPriority = false,
   onSave,
   onCancel,
 }: TaskDialogProps) {
   const [title, setTitle] = useState(initialFields.title);
   const [description, setDescription] = useState(initialFields.description);
+  const [priority, setPriority] = useState(initialFields.priority);
   const [showTitleError, setShowTitleError] = useState(false);
   const titleId = useId();
   const titleErrorId = useId();
   const descriptionId = useId();
+  const priorityId = useId();
   const titleInvalid = showTitleError && isBlank(title);
 
   return (
@@ -37,7 +42,7 @@ export function TaskDialog({
             setShowTitleError(true);
             return;
           }
-          onSave({ title, description });
+          onSave({ title, description, priority });
         }}
       >
         <div className="flex flex-col gap-1">
@@ -74,6 +79,29 @@ export function TaskDialog({
             className="rounded-md border border-border px-3 py-2 outline-primary"
           />
         </div>
+        {showPriority && (
+          <div className="flex flex-col gap-1">
+            <label htmlFor={priorityId} className="font-medium">
+              Priority
+            </label>
+            <select
+              id={priorityId}
+              value={priority}
+              onChange={(event) => {
+                const selected = priorities[event.target.selectedIndex];
+                if (!selected) throw new Error("Invalid Priority selection");
+                setPriority(selected.name);
+              }}
+              className="rounded-md border border-border px-3 py-2 outline-primary"
+            >
+              {priorities.map((level) => (
+                <option key={level.name} value={level.name}>
+                  {level.icon} {level.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
         <div className="flex justify-end gap-2">
           <button type="button" className={buttonStyles.secondary} onClick={onCancel}>
             Cancel

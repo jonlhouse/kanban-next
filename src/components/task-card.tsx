@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import type { Task } from "@/lib/board";
+import { priorityPresentation } from "@/lib/priority";
 
 type TaskCardProps = {
   task: Task;
@@ -19,6 +20,7 @@ export function TaskCard({
   onDragEnd,
 }: TaskCardProps) {
   const pendingDragStart = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const priority = priorityPresentation(task.priority);
 
   return (
     <article
@@ -39,7 +41,25 @@ export function TaskCard({
         isDragging ? "opacity-50" : ""
       }`}
     >
-      <h3 className="font-medium break-words">{task.title}</h3>
+      <div className="flex items-start gap-2">
+        <h3 className="min-w-0 flex-1 font-medium break-words">{task.title}</h3>
+        <span className="group relative">
+          <span
+            role="img"
+            aria-label={`${priority.name} Priority`}
+            tabIndex={0}
+            className={`rounded outline-primary ${priority.color}`}
+          >
+            {priority.icon}
+          </span>
+          <span
+            role="tooltip"
+            className="invisible absolute right-0 bottom-full z-10 rounded bg-text px-2 py-1 text-xs whitespace-nowrap text-white group-hover:visible group-focus-within:visible"
+          >
+            {priority.name}
+          </span>
+        </span>
+      </div>
       {task.description && (
         <p className="mt-1 text-sm break-words whitespace-pre-line">
           {task.description}
