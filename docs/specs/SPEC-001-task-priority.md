@@ -1,12 +1,12 @@
 # SPEC-001-task-priority: Task Priority
 
 Status: Approved
-Date: 2026-10-31
+Date: 2026-11-02
 BRD: [REQ-001-task-priority](../brds/REQ-001-task-priority.md)
 
 ## Summary
 
-Users can choose Task Priority when adding or editing a Task, and recognize it from an icon on each Card. Priority does not rearrange or hide Cards, and remains unchanged when a Task moves between Columns.
+Users can choose Task Priority when adding or editing a Task, and recognize it from an icon on each Card. Each Priority level has the same icon and color in the drop-down as on Cards. Priority does not rearrange or hide Cards, and remains unchanged when a Task moves between Columns.
 
 ## User stories
 
@@ -45,20 +45,34 @@ As a Board user, I want to recognize each Task's Priority on its Card, so that I
   - Given a Task in a Column, when I move it to another Column, then its Priority and corresponding icon remain unchanged.
   - Given manually ordered Cards, when I change a Task's Priority, then the Cards do not automatically rearrange or disappear.
 
+### SPEC-001.004-consistent-level-look
+
+As a Board user, I want each Priority level to have the same icon and color when I choose it as on its Card, so that I learn each level once.
+
+- Serves: REQ-001.004-consistent-level-look, BR-001.007-one-look
+- Acceptance:
+  - Given the Priority drop-down in Add Task or Edit Task, when I inspect its options, then each Priority level shows the same icon and color as on a Card.
+  - Given a selected Priority level in the closed drop-down, when I view it, then it shows the same icon and color as on a Card.
+  - Given a Card's Priority tooltip or an accessibility label, when I use it, then its name appears without an icon or color of its own.
+  - Given the Add Task dialog, when I choose a Priority level with the mouse or keyboard, then it takes no more steps than before this change, and assistive technology can still read the selected Priority level.
+
 ## Test seams
 
-- **The Add and Edit Task dialogs:** SPEC-001.001, SPEC-001.002
-- **Cards on the Board:** SPEC-001.003
+- **The Add and Edit Task dialogs:** SPEC-001.001, SPEC-001.002, SPEC-001.004
+- **Cards on the Board:** SPEC-001.003, SPEC-001.004 (the reference for each Priority level's icon and color)
 
-Use the Medium default and one non-default level rather than exercising each level separately.
+Use the Medium default and one non-default level rather than exercising each level separately, except for SPEC-001.004, which covers all four because a mismatch can affect just one.
 
 ## Deferred to design
 
 - Architecture: How Priority and its presentation are represented, and whether or how to automate checks with a test harness.
+- Architecture: Whether the native drop-down can show the colors, or has to be replaced. Replacing it is agreed if needed; any new dependency needs approval first.
 - UI: The actual icons, colors and styling, and how the drop-down and discoverable Priority name are implemented accessibly.
+- UI: Whether color applies to only the icon or to the whole drop-down entry, given that both match a Card's icon and color.
 
 ## Out of scope
 
 - Sorting or filtering by Priority; manual Card order remains in use.
 - Reminders, automatic escalation, or enforcement of a work order.
 - Collaboration, persistence, and migration of saved Tasks; the Board is session-only and has no saved Tasks to migrate.
+- Redesigning the icons or colors of the Priority levels; the ones on Cards are the reference.

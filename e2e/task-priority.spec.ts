@@ -160,3 +160,68 @@ test("SPEC-001.003-recognize-priority: changing Priority preserves manually orde
   await expect(cards.getByRole("heading")).toHaveText(["Second Task", "Third Task", "First Task"]);
   await expect(cards.filter({ hasText: "Third Task" }).getByRole("img", { name: "High Priority" })).toHaveText("◆");
 });
+
+test("SPEC-001.004-consistent-level-look: each Priority level has its Card's icon and color in the drop-down", async ({ page }) => {
+  await page.goto("/");
+
+  for (const level of ["Critical", "High", "Medium", "Low"]) {
+    await page.getByRole("button", { name: "Add Task" }).click();
+    const addDialog = page.getByRole("dialog", { name: "Add Task" });
+    await addDialog.getByLabel("Title").fill(`${level} report`);
+    const addPriority = addDialog.getByLabel("Priority");
+    await addPriority.selectOption(level);
+    const addOption = addPriority.locator("option:checked");
+    const addOptionColor = await addOption.evaluate((element) => getComputedStyle(element).color);
+    const addSelectedColor = await addPriority.evaluate((element) => getComputedStyle(element).color);
+    const addOptionText = await addOption.innerText();
+    await addDialog.getByRole("button", { name: "Add Task" }).click();
+
+    const card = page.getByRole("article").filter({ hasText: `${level} report` });
+    const icon = card.getByRole("img", { name: `${level} Priority` });
+    const iconText = await icon.innerText();
+    const iconColor = await icon.evaluate((element) => getComputedStyle(element).color);
+    expect(addOptionText).toBe(`${iconText} ${level}`);
+    expect(addOptionColor).toBe(iconColor);
+    expect(addSelectedColor).toBe(iconColor);
+
+    await card.getByRole("button", { name: `Edit task: ${level} report` }).click();
+    const editDialog = page.getByRole("dialog", { name: "Edit Task" });
+    const editPriority = editDialog.getByLabel("Priority");
+    await expect(editPriority.locator("option:checked")).toHaveText(`${iconText} ${level}`);
+    await expect(editPriority.locator("option:checked")).toHaveCSS("color", iconColor);
+    await expect(editPriority).toHaveCSS("color", iconColor);
+    await editDialog.getByRole("button", { name: "Cancel" }).click();
+  }
+});
+
+test("SPEC-001.004-consistent-level-look: a Card's Priority name has no icon or color of its own", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Add Task" }).click();
+  const dialog = page.getByRole("dialog", { name: "Add Task" });
+  await dialog.getByLabel("Title").fill("Urgent report");
+  await dialog.getByLabel("Priority").selectOption("Critical");
+  await dialog.getByRole("button", { name: "Add Task" }).click();
+
+  const card = page.getByRole("article").filter({ hasText: "Urgent report" });
+  const icon = card.getByRole("img", { name: "Critical Priority" });
+  await icon.hover();
+  const tooltip = card.getByRole("tooltip");
+  await expect(tooltip).toHaveText("Critical");
+  await expect(tooltip).toHaveCSS("color", "rgb(255, 255, 255)");
+});
+
+test("SPEC-001.004-consistent-level-look: choosing a Priority level by keyboard keeps its name readable and shows its color", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Add Task" }).click();
+  const dialog = page.getByRole("dialog", { name: "Add Task" });
+  await dialog.getByLabel("Title").fill("Urgent report");
+  const priority = dialog.getByRole("combobox", { name: "Priority" });
+  await priority.focus();
+  await page.keyboard.press("ArrowUp");
+  await expect(priority).toHaveValue("High");
+  const selectedColor = await priority.evaluate((element) => getComputedStyle(element).color);
+  await dialog.getByRole("button", { name: "Add Task" }).click();
+
+  const card = page.getByRole("article").filter({ hasText: "Urgent report" });
+  await expect(card.getByRole("img", { name: "High Priority" })).toHaveCSS("color", selectedColor);
+});
