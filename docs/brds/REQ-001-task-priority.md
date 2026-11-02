@@ -1,11 +1,11 @@
 # REQ-001-task-priority: Task Priority
 
 Status: Approved
-Date: 2026-10-31
+Date: 2026-11-02
 
 ## Purpose
 
-A freelance developer managing work for several clients needs to recognize which Tasks deserve attention first. When all Tasks appear equally important, urgent work can be overlooked and started too late.
+A freelance developer managing work for several clients needs to recognize which Tasks deserve attention first. When all Tasks appear equally important, urgent work can be overlooked and started too late. A Priority level that looks different when it is chosen than when it is on a Card makes Priority harder to learn and feels inconsistent.
 
 ## Stakeholders
 
@@ -15,16 +15,19 @@ A freelance developer managing work for several clients needs to recognize which
 
 - Fewer urgent Tasks are started too late. Assess this by periodically comparing the number started too late before and after the change, without requiring the Board to collect the measurements.
 - Capturing a Task does not require a separate Priority decision.
+- A Board user who has learned a Priority level's icon and color in one place recognizes it everywhere else, without relearning it. Assess this by a look-and-feel review that finds no place where a level differs, without requiring the Board to collect measurements.
 
 ## Scope
 
 In scope:
 - Choosing, changing, and recognizing Task Priority across the Board.
 - A default Priority for Tasks without an explicit choice, including existing Tasks without Priority.
+- The same icon and color for each Priority level wherever it is shown for choosing or recognizing.
 
 Out of scope:
 - Enforcing a work order, reminders, and automatic escalation: Priority is an indicator, not an instruction.
 - Collaboration and persistence across sessions: these remain outside the current Board's scope.
+- Redesigning the icons or colors of the Priority levels: the ones on Cards are the reference.
 
 ## Requirements
 
@@ -58,6 +61,15 @@ A Board user can capture a Task without making a separate Priority decision.
   - A Task created without an explicit Priority has Medium Priority.
   - Existing Tasks without a Priority have Medium Priority.
 
+### REQ-001.004-consistent-level-look
+
+A Board user meets the same icon and color for a Priority level wherever it is shown for choosing or recognizing.
+
+- Priority: Should
+- Business value: The user learns each level once and recognizes it everywhere, including at the moment of choosing it.
+- Acceptance criteria:
+  - Wherever a Priority level is shown for choosing or recognizing, it has the same icon and color as on Cards.
+
 ## Business rules
 
 | Name | Description |
@@ -68,17 +80,23 @@ A Board user can capture a Task without making a separate Priority decision.
 | BR-001.004-default | Medium is the default when no Priority has been chosen. |
 | BR-001.005-movement | Moving a Task between Columns does not change its Priority; a user may change it deliberately. |
 | BR-001.006-advisory | Priority is an indicator and does not dictate which Task a user must undertake. |
+| BR-001.007-one-look | Each Priority level has one icon and one color, used wherever the level is shown for choosing or recognizing. A name that only supports an icon already present, or that is read aloud, is exempt. |
 
 ## Constraints
 
 - The current Board remains a single-person, session-only proof of concept; Priority does not require collaboration or persistence.
+- Keeping Priority levels consistent must not slow down capturing a Task.
 
 ## Deferred to the spec
 
 - Where and how Priority is displayed, chosen, and changed, including during Task creation.
 - Whether and how Tasks can be sorted or filtered by Priority.
-- Visual and accessible presentation of the levels.
+- Visual and accessible presentation of the levels, within BR-001.007-one-look.
 - How existing Tasks without Priority receive the default.
+- Which product elements BR-001.007-one-look exempts, including hover tooltips and accessibility labels.
+- Whether the selected Priority level in the drop-down also shows its icon and color.
+- Whether the native drop-down can show the colors. If it can't, replacing it is worth doing, within the constraint above.
+- How the icons and colors are checked for consistency.
 
 ## Open questions
 
