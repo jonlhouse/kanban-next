@@ -96,3 +96,67 @@ test("SPEC-001.001-add-priority: editing Task details preserves the chosen Prior
   const card = page.getByRole("article").filter({ hasText: "Revised report" });
   await expect(card.getByRole("img", { name: "High Priority" })).toHaveText("◆");
 });
+
+test("SPEC-001.002-edit-priority: editing a Task selects its Priority and saves a change", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Add Task" }).click();
+  const addDialog = page.getByRole("dialog", { name: "Add Task" });
+  await addDialog.getByLabel("Title").fill("Write the report");
+  await addDialog.getByRole("button", { name: "Add Task" }).click();
+
+  await page.getByRole("button", { name: "Edit task: Write the report" }).click();
+  const editDialog = page.getByRole("dialog", { name: "Edit Task" });
+  const priority = editDialog.getByLabel("Priority");
+  await expect(priority).toHaveValue("Medium");
+  await expect(priority.locator("option:checked")).toHaveText("● Medium");
+  await expect(priority.locator("option")).toHaveText(["▲ Critical", "◆ High", "● Medium", "▼ Low"]);
+  await priority.selectOption("High");
+  await editDialog.getByRole("button", { name: "Save" }).click();
+
+  const card = page.getByRole("article").filter({ hasText: "Write the report" });
+  await expect(card.getByRole("img", { name: "High Priority" })).toHaveText("◆");
+  await card.getByRole("button", { name: "Edit task: Write the report" }).click();
+  await expect(page.getByRole("dialog", { name: "Edit Task" }).getByLabel("Priority")).toHaveValue("High");
+});
+
+test("SPEC-001.002-edit-priority: canceling a Priority change retains the original Priority", async ({ page }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "Add Task" }).click();
+  const addDialog = page.getByRole("dialog", { name: "Add Task" });
+  await addDialog.getByLabel("Title").fill("Write the report");
+  await addDialog.getByRole("button", { name: "Add Task" }).click();
+
+  const card = page.getByRole("article").filter({ hasText: "Write the report" });
+  await card.getByRole("button", { name: "Edit task: Write the report" }).click();
+  const editDialog = page.getByRole("dialog", { name: "Edit Task" });
+  await editDialog.getByLabel("Priority").selectOption("High");
+  await editDialog.getByRole("button", { name: "Cancel" }).click();
+
+  await expect(card.getByRole("img", { name: "Medium Priority" })).toHaveText("●");
+  await card.getByRole("button", { name: "Edit task: Write the report" }).click();
+  await expect(editDialog.getByLabel("Priority")).toHaveValue("Medium");
+});
+
+test("SPEC-001.003-recognize-priority: changing Priority preserves manually ordered Cards", async ({ page }) => {
+  await page.goto("/");
+  for (const title of ["First Task", "Second Task", "Third Task"]) {
+    await page.getByRole("button", { name: "Add Task" }).click();
+    const dialog = page.getByRole("dialog", { name: "Add Task" });
+    await dialog.getByLabel("Title").fill(title);
+    await dialog.getByRole("button", { name: "Add Task" }).click();
+  }
+
+  const backlog = page.getByRole("region", { name: "Backlog" });
+  const cards = backlog.getByRole("article");
+  await cards.filter({ hasText: "First Task" }).dragTo(cards.filter({ hasText: "Third Task" }));
+  await expect(cards.getByRole("heading")).toHaveText(["Second Task", "Third Task", "First Task"]);
+
+  await page.getByRole("button", { name: "Edit task: Third Task" }).click();
+  const dialog = page.getByRole("dialog", { name: "Edit Task" });
+  await dialog.getByLabel("Priority").selectOption("High");
+  await dialog.getByRole("button", { name: "Save" }).click();
+
+  await expect(page.getByRole("article")).toHaveCount(3);
+  await expect(cards.getByRole("heading")).toHaveText(["Second Task", "Third Task", "First Task"]);
+  await expect(cards.filter({ hasText: "Third Task" }).getByRole("img", { name: "High Priority" })).toHaveText("◆");
+});
