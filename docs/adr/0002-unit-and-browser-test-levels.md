@@ -22,4 +22,4 @@ Tests cover the acceptance criteria of new specs only. The MVP is not backfilled
 - MVP behaviour can regress without a test catching it, including checks that exist only in `docs/UAT-results.md`.
 - Ad hoc edits run no tests.
 - The Firefox drag workaround in `task-card.tsx` is not exercised.
-- Automated native drag is unproven until the first browser test that needs it. If it can't be driven, revisit this decision.
+- Playwright can drive native drag: `dragTo` moves and reorders Cards in the SPEC-001 browser tests.

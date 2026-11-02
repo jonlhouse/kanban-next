@@ -80,7 +80,7 @@ test("SPEC-001.003-recognize-priority: moving a Task preserves its Priority and 
   await expect(moved.getByRole("img", { name: "High Priority" })).toHaveText("◆");
 });
 
-test("SPEC-001.001-add-priority: editing Task details preserves the chosen Priority", async ({ page }) => {
+test("SPEC-001.002-edit-priority: editing Task details preserves the chosen Priority", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "Add Task" }).click();
   const addDialog = page.getByRole("dialog", { name: "Add Task" });
