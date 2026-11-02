@@ -92,7 +92,8 @@ export function Board() {
         <TaskDialog
           heading="Add Task"
           submitLabel="Add Task"
-          initialFields={{ title: "", description: "" }}
+          initialFields={{ title: "", description: "", priority: "Medium" }}
+          showPriority
           onSave={(fields) => {
             dispatch({ type: "addTask", taskId: crypto.randomUUID(), fields });
             closeDialog();
